@@ -1,0 +1,33 @@
+#include <TELEOP.h>
+#include <PRIZM.h>
+#include <Servo.h>
+PS4 ps4;
+PRIZM prizm;
+void setup(){
+  Serial.begin(115200);
+  ps4.getPS4();
+  prizm.PrizmBegin();
+  prizm.setServoPosition(2,90);
+    
+}
+void loop(){
+ if(ps4.Connected){
+  ps4.setLED(RED);
+ }
+ 
+
+  
+if(ps4.Button(L2T)){
+  prizm.setMotorPower(1,ps4.Button(L2T));
+}else if(ps4.Button(R2T)){
+  prizm.setMotorPower(2,ps4.Button(R2T));
+}else if(ps4.Button(SQUARE)){
+  prizm.setMotorPowers(-125,-125);
+}
+if(ps4.Button(CIRCLE));
+  prizm.setServoPosition(2,100);
+}
+
+
+
+
